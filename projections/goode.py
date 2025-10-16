@@ -12,13 +12,13 @@ from cartopy.feature import ShapelyFeature
 world = gpd.read_file('ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
 
 # List of countries to color
-countries_to_color = ['Switzerland', 'Germany', 'France', 'Italy', 'Austria', 'Indonesia', 'Hungary', 'Poland','Mexico']
+countries_to_color = ['Switzerland', 'Germany', 'France', 'Italy', 'Austria', 'Indonesia', 'Hungary', 'Poland','Mexico','Portugal','Belgium','Czech Republic']
 #'Australia',
 # Filter the dataframe to include only the countries of interest
 countries = world[world['NAME'].isin(countries_to_color)]
 #
 states_to_world = ['North Carolina', 'South Carolina', 'Massachusetts', 'Colorado', 'Georgia', 'Tennessee', 'Nevada','Delaware','New Jersey',\
-'West Virginia', 'Virginia', 'New York', 'Kentucky', 'Oregon', 'California', 'Illinois', 'Minnesota', 'Washington','Ohio','DC',\
+'West Virginia', 'Virginia', 'New York', 'Kentucky', 'Oregon', 'California', 'Illinois', 'Minnesota', 'Washington','Ohio','DC','Arizona',\
 'New South Wales','Victoria','South Australia','Northern Territory','Western Australia','Queensland','Tasmania']
 
 states_to_color_ind=['Chandigarh','Delhi','Himachal Pradesh','Haryana','Jammu and Kashmir','Andhra Pradesh','Kerala','Karnataka',\
@@ -39,27 +39,27 @@ states_ind = us_states[us_states['name'].isin(list_ind_states)]
 # cities = gpd.read_file(gpd.datasets.get_path('naturalearth_cities'))
 cities = gpd.read_file('ne_10m_populated_places_simple/ne_10m_populated_places_simple.shp')
 
-for idx, row in cities.iterrows():
-    if row['sov0name'] == 'Australia':
-        print(row['name'])
+# for idx, row in cities.iterrows():
+#     if row['sov0name'] == 'Australia':
+        # print(row['name'])
         # list_ind_states.append(row['name'])
 
-cities_oz=['Sydney','Perth','Hobart','Melbourne','Alice Springs','Adelaide','Canberra','Brisbane','Wollongong','Darwin','Cairns','Wagga Wagga','Tumut','Merimbula'\
+cities_oz=['Sydney','Perth','Hobart','Melbourne','Alice Springs','Adelaide','Canberra','Brisbane','Wollongong','Darwin','Cairns','Wagga Wagga','Tumut','Merimbula',
 'Albury','Mildura','Narrabri','Orange','Eden','Mackay','Townsville','Rockhampton','Sunshine Coast','Bundaberg','Coffs Harbour','Horsham','Cooma','Nowra','Ulladulla','Batemans Bay',\
 'Davenport','Katherine','Yulara','Warrnambool','Gold Coast','Bendigo','Launceston','Bowen','Moree','Tennant Creek','Hervey Bay','Sunshine Coast']
 cities_india=['Indore','Bhopal','Srinagar','Pune','New Delhi','Bengaluru','Kolkata','Kochi','Kanpur','Agra','Lucknow','Jaipur','Bhusawal',\
 'Jodhpur','Jaisalmer','Nagpur','Coimbatore','Puducherry','Munnar','Dehradun','Nagercoil','Ahmedabad','Mysuru','Mangaluru','Jammu','Gandhinagar']
-cities_europe=['Vienna','Budapest','Bonn','Cologne','Interlaken','Bern','Basel','Milan','Geneva','Berlin','Warsaw','Chamonix','Grindelwald',\
-'Metzeral','Bolzano','Bad Schandau']
-cities_us=['Boulder', 'New York','Bend','Columbia','Atlanta','Las Vegas','Los Angeles','Minneapolis','Chicago','Medford','White Salmon',\
-'Myrtle Beach','Boston','Mt Shasta','Furnace Creek','Asheville','Huntington','Lexington','Lansing','Great Barrington','Mt Airy']
+cities_europe=['Vienna','Budapest','Bonn','Cologne','Interlaken','Bern','Basel','Milan','Geneva','Berlin','Warsaw','Chamonix',\
+'Metzeral','Bolzano','Brussels','Krakow','Lisbon']
+cities_us=['Boulder', 'New York','Bend','Atlanta','Los Angeles','Minneapolis','Chicago','Medford','White Salmon',\
+'Myrtle Beach','Boston','Mt Shasta','Furnace Creek','Asheville','Huntington','Lexington','Lansing','Great Barrington','Mt Airy','Phoenix','Flagstaff']
 cities_misc=['Singapore','Denpasar','Yogyakarta','Malang','Jember','Monterrey']
 cities_to_plot = cities_oz+cities_india+cities_europe+cities_us+cities_misc
 # cities_filtered = cities[cities['name'].isin(cities_us)]
 cities_filtered = cities[cities.apply(lambda row: row['name'] in cities_to_plot and (
     (row['sov0name'] == 'Australia' and row['name'] in cities_oz) or
     (row['sov0name'] == 'India' and row['name'] in cities_india) or
-    (row['sov0name'] in ['Austria', 'Hungary', 'Germany', 'Switzerland', 'Italy', 'Poland'] and row['name'] in cities_europe) or
+    (row['sov0name'] in ['Austria', 'Hungary', 'Germany', 'Switzerland', 'Italy', 'Poland','Belgium','Portugal'] and row['name'] in cities_europe) or
     (row['sov0name'] == 'United States' and row['name'] in cities_us) or
     (row['sov0name'] in ['Singapore', 'Indonesia','Mexico'] and row['name'] in cities_misc)
 ), axis=1)]
@@ -95,9 +95,9 @@ for state in states_ind.geometry:
 #     ax.add_feature(city_feature,linewidth=0.25, alpha=0.5)
 
 # Plot the cities as small circles
-for idx, row in cities_filtered.iterrows():
-    ax.plot(row.geometry.x, row.geometry.y, 'o', markeredgecolor='xkcd:black',color='xkcd:light burgundy',markeredgewidth=.2, markersize=3, \
-    transform=ccrs.PlateCarree(),alpha=.75)
+# for idx, row in cities_filtered.iterrows():
+#     ax.plot(row.geometry.x, row.geometry.y, 'o', markeredgecolor='xkcd:black',color='xkcd:light burgundy',markeredgewidth=.2, markersize=3, \
+#     transform=ccrs.PlateCarree(),alpha=.75)
 # ##
 ax.plot(0, 89, 'o', markeredgecolor='xkcd:black',color='xkcd:white',markeredgewidth=.1, markersize=1, \
 transform=ccrs.PlateCarree(),alpha=.8)
