@@ -95,9 +95,9 @@ for state in states_ind.geometry:
 #     ax.add_feature(city_feature,linewidth=0.25, alpha=0.5)
 
 # Plot the cities as small circles
-# for idx, row in cities_filtered.iterrows():
-#     ax.plot(row.geometry.x, row.geometry.y, 'o', markeredgecolor='xkcd:black',color='xkcd:light burgundy',markeredgewidth=.2, markersize=3, \
-#     transform=ccrs.PlateCarree(),alpha=.75)
+for idx, row in cities_filtered.iterrows():
+    ax.plot(row.geometry.x, row.geometry.y, 'o', markeredgecolor='xkcd:black',color='xkcd:light burgundy',markeredgewidth=.2, markersize=3, \
+    transform=ccrs.PlateCarree(),alpha=.75)
 # ##
 ax.plot(0, 89, 'o', markeredgecolor='xkcd:black',color='xkcd:white',markeredgewidth=.1, markersize=1, \
 transform=ccrs.PlateCarree(),alpha=.8)
@@ -114,7 +114,7 @@ plt.tight_layout()
 plt.show()
 
 sys.exit()
-plt.savefig('Countries_w_city.pdf', dpi=800,bbox_inches='tight', pad_inches=0.1)
+plt.savefig('Countries_w_city.png', dpi=800,bbox_inches='tight', pad_inches=0.1)
 plt.savefig('Countries_new_.png', dpi=800,bbox_inches='tight', pad_inches=0.1)
 
 # Create a new figure and axes
