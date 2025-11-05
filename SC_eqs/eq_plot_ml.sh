@@ -52,23 +52,23 @@ gmt pscoast $Rmap $J -Bx -By -Na/.65p,darkolivegreen -A1 -P -Slightsteelblue@50 
 # awk '{print $1,$2,$3,$4*.14}' $eq_NA_ml | gmt6 psxy $Rmap $J -: -Sc -W.15,black -Cdark_reds.cpt -t20 -B -O -P -K >> $PS # eq
 
 #echo $char_eq
-# head -n1 $eq_all4plus | gmt psxy $Rmap $J -: -Sc2.5 -W.15,black -Gindianred -t60 -B -O -P -K >> $PS # eq
+head -n1 $eq_all4plus | gmt psxy $Rmap $J -: -Sc2.5 -W.15,black -Gindianred -t60 -B -O -P -K >> $PS # eq
 #
-# awk '{print $1,$2,$3*.08}' $eq_all4plus | gmt psxy $Rmap $J -: -Sc -W.15,black -Gindianred -t40 -B -O -P -K >> $PS # eq
-#
-# awk '{print $1,$2,$3*.1}' $eq_all4minus | gmt psxy $Rmap $J -: -Sc.09 -W.3,black -Gwhite@95 -B -O -P -K >> $PS # eq
+awk '{print $1,$2,$3*.08}' $eq_all4plus | gmt psxy $Rmap $J -: -Sc -W.15,black -Gindianred -t40 -B -O -P -K >> $PS # eq
+
+awk '{print $1,$2,$3*.1}' $eq_all4minus | gmt psxy $Rmap $J -: -Sc.09 -W.3,black -Gwhite@95 -B -O -P -K >> $PS # eq
 
 
 #
 #Stations
 awk '{print $3,$4}' scsn.txt | gmt psxy -: -W.5,beige -St.35 -Gdimgray@10 $J $Rmap -O -K >> $PS
-awk '{print $3-.06,$4,$2}' scsn.txt | gmt pstext $Rmap $J -: -F+f3p,Helvetica-Bold -Gwhite@10 -O -P -K >> $PS
+# awk '{print $3-.06,$4,$2}' scsn.txt | gmt pstext $Rmap $J -: -F+f3p,Helvetica-Bold -Gwhite@10 -O -P -K >> $PS
 
 #echo eqs
 
 #
-# echo -79.28 33 Historic 1886 | gmt pstext $Rmap $J -F+f6.5p,Helvetica,darkred -Gwhite@10 -O -P -K  >> $PS
-# echo -79.2 32.91 Charleston earthquake | gmt pstext $Rmap $J -F+f6.5p,Helvetica,darkred -Gwhite@10 -O -P -K  >> $PS
+echo -79.28 33 Historic 1886 | gmt pstext $Rmap $J -F+f6.5p,Helvetica,darkred -Gwhite@10 -O -P -K  >> $PS
+echo -79.2 32.91 Charleston earthquake | gmt pstext $Rmap $J -F+f6.5p,Helvetica,darkred -Gwhite@10 -O -P -K  >> $PS
 
 echo -81.0348 34.0 | gmt psxy $Rmap $J -Ss.35 -W.35,white -Gdarkslateblue -t0 -B -O -P -K >> $PS # cola
 echo -82.3940 34.8526 | gmt psxy $Rmap $J -Ss.25 -W.35,white -Gdarkslateblue -t0 -B -O -P -K >> $PS # cola
@@ -87,11 +87,13 @@ echo -82.2705 33.4735 Augusta | gmt pstext $Rmap $J -F+f6.5p,Helvetica -O -P -K 
 echo -79.55 32.776 Charleston | gmt pstext $Rmap $J -F+f6.5p,Helvetica -O -P -K  >> $PS
 echo -79 33.3485 BMFL | gmt pstext $Rmap $J -F+f5.5p,Helvetica -O -P -K  >> $PS
 
+echo -80.72 34.16 | gmt psxy $Rmap $J -Sa.45 -W.35,darkgoldenrod -Ggold -t0 -B -O -P -K >> $PS # bmfl
+echo -80.3 34.3 Elgin Swarm | gmt pstext $Rmap $J -F+f7.5p,Helvetica,darkgoldenrod -O -P -K  >> $PS
 
 
 ###
-# echo -79.23 35.25 Earthquakes of  | gmt pstext $Rmap $J -F+f12.5p,Courier  -Gwhite@5 -O -P -K  >> $PS
-# echo -79.23 35.09 South Carolina  | gmt pstext $Rmap $J -F+f12.5p,Courier  -Gwhite@5 -O -P -K  >> $PS
+echo -79.23 35.25 Earthquakes of  | gmt pstext $Rmap $J -F+f12.5p,Courier  -Gwhite@5 -O -P -K  >> $PS
+echo -79.23 35.09 South Carolina  | gmt pstext $Rmap $J -F+f12.5p,Courier  -Gwhite@5 -O -P -K  >> $PS
 
 gmt gmtset FONT_ANNOT_PRIMARY 7p MAP_FRAME_PEN .8p FONT_LABEL 7.5p
 
@@ -103,12 +105,13 @@ gmt psbasemap -B -V $J $Rmap -Tdg-78.55/34.8+w.3i+f -O -P -K >> $PS
 
 #gmt6 psscale -Dx11.2c/2.2c+w4c/.24c+e -O -K -Cdark_reds.cpt -Bx3 -Bx+l"Depth (km)" >> $PS
 #gmt6 pslegend -Dx1.2c/4c+w2.4c/1.6c+o-1c/-.5c -F+gwhite+p.1 -O -K $J $Rmap << EOF >> $PS
-# gmt pslegend -Dx1.31c/.8c+w3.5c/1.2c+o-1c/-.5c -F+gwhite+p.1 -O $J $Rmap << EOF >> $PS
-gmt pslegend -Dx1.31c/.8c+w1.5c/.5c+o-1c/-.5c -F+gwhite+p.1 -O $J $Rmap << EOF >> $PS
+gmt pslegend -Dx1.31c/.8c+w3.5c/1.2c+o-1c/-.5c -F+gwhite+p.1 -O $J $Rmap << EOF >> $PS
+# gmt pslegend -Dx1.31c/.8c+w1.5c/.5c+o-1c/-.5c -F+gwhite+p.1 -O $J $Rmap << EOF >> $PS
 
-S 0.2c t 0.35c dimgray - 0.2i SCSN
-# S 0.2c c 0.12c white@40 .5p,black 0.2i low danger earthquakes
-# S 0.2c c 0.3c darkred@40 - 0.2i damaging earthquakes
+# S 0.2c t 0.35c dimgray - 0.2i SCSN
+S 0.2c t 0.35c dimgray - 0.2i Our seismometers
+S 0.2c c 0.12c white@40 .5p,black 0.2i low danger earthquakes
+S 0.2c c 0.3c darkred@40 - 0.2i damaging earthquakes
 #S 0.2c x 0.2c - .95p,firebrick 0.2i Eq (R_19 < 200)
 EOF
 
