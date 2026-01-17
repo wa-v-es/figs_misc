@@ -74,25 +74,25 @@ plt.rcParams.update({'font.size': 14})
 
 # ax1.gridlines(draw_labels=False, linewidth=0.5, color='gray', alpha=0.5)
 
-ax1.set_extent([-136,-59,41,71], crs=ccrs.PlateCarree())
+ax1.set_extent([-136,-55,41,71], crs=ccrs.PlateCarree())
 
 # grat = cartopy.feature.NaturalEarthFeature(category="physical", scale="10m", name="graticules_5")
 # ax1.add_feature(grat, linewidth=0.5,linestyle="--",edgecolor="#000000",facecolor="None", zorder=2)
 
 ax1.coastlines(resolution="50m",color="#111111", linewidth=0.5, zorder=99)
-ax1.add_feature(cfeature.BORDERS.with_scale('50m'), linestyle=':')
+ax1.add_feature(cfeature.BORDERS.with_scale('50m'),color="#111111", linewidth=0.5,)
 
-ax1.add_feature(cartopy.feature.STATES.with_scale('50m'),linewidth=0.5,edgecolor='gray')
-ax1.add_feature(cfeature.OCEAN.with_scale('50m'),alpha=0.1,facecolor='xkcd:azure')
-# ax1.add_feature(cfeature.LAKES.with_scale('10m'),alpha=0.3,facecolor='xkcd:dusty blue')
+ax1.add_feature(cartopy.feature.STATES.with_scale('50m'),linestyle='--',linewidth=0.5,edgecolor='gray')
+ax1.add_feature(cfeature.OCEAN.with_scale('50m'),alpha=0.2,facecolor='xkcd:muted blue')
+ax1.add_feature(cfeature.LAKES.with_scale('50m'),alpha=0.4,facecolor='xkcd:dusty blue')
 
 # long > -141
 station_cn=0
 for sta in sta_list:
     if canada.contains(Point(sta.lon, sta.lat)):
-        station_cn=station_cn+1
+        # station_cn=station_cn+1
     # if sta.lat > 41.5 and sta.lon > -141:
-        # ax1.scatter(sta.lon,sta.lat,marker='v', s=14, transform=ccrs.Geodetic(),c='none',edgecolors='rebeccapurple',alpha=.5,lw=.8)
+        ax1.scatter(sta.lon,sta.lat,marker='v', s=25, transform=ccrs.Geodetic(),c='rebeccapurple',alpha=.4,lw=.8)#edgecolors='rebeccapurple'
 print('Total stations in canada: ',station_cn)
 # for i,lat in enumerate(lats):
 #     if lat > 41.5 and long > -141:
