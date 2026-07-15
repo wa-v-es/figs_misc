@@ -19,6 +19,7 @@ countries = world[world['NAME'].isin(countries_to_color)]
 #
 states_to_world = ['North Carolina', 'South Carolina', 'Massachusetts', 'Colorado', 'Georgia', 'Tennessee', 'Nevada','Delaware','New Jersey',\
 'West Virginia', 'Virginia', 'New York', 'Kentucky', 'Oregon', 'California', 'Illinois', 'Minnesota', 'Washington','Ohio','DC','Arizona','Louisiana',\
+'Missouri','Iowa','Nebraska','Wyoming','Montana','South Dakota','Wisconsin','Indiana',\
 'New South Wales','Victoria','South Australia','Northern Territory','Western Australia','Queensland','Tasmania']
 
 states_to_color_ind=['Chandigarh','Delhi','Himachal Pradesh','Haryana','Jammu and Kashmir','Andhra Pradesh','Kerala','Karnataka',\
@@ -53,7 +54,7 @@ cities_europe=['Vienna','Budapest','Bonn','Cologne','Interlaken','Bern','Basel',
 'Metzeral','Bolzano','Brussels','Krakow','Lisbon']
 cities_us=['Boulder', 'New York','Bend','Atlanta','Los Angeles','Minneapolis','Chicago','Medford',\
 'Myrtle Beach','Boston','Mt Shasta','Furnace Creek','Asheville','Huntington','Lexington','Great Barrington',\
-'Mt Airy','Phoenix','Flagstaff','New Orleans']
+'Mt Airy','Phoenix','Flagstaff','New Orleans','Laramie','Bozeman','Madison']
 cities_misc=['Singapore','Denpasar','Yogyakarta','Malang','Jember','Monterrey']
 cities_to_plot = cities_oz+cities_india+cities_europe+cities_us+cities_misc
 # cities_filtered = cities[cities['name'].isin(cities_us)]
