@@ -12,7 +12,8 @@ from cartopy.feature import ShapelyFeature
 world = gpd.read_file('ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp')
 
 # List of countries to color
-countries_to_color = ['Switzerland', 'Germany', 'France', 'Italy', 'Austria', 'Indonesia', 'Hungary', 'Poland','Mexico','Portugal','Belgium','Czech Republic']
+countries_to_color = ['Switzerland', 'Germany', 'France', 'Italy', 'Austria', 'Indonesia', 'Hungary', 'Poland','Mexico','Portugal','Belgium',\
+'Panama']
 #'Australia',
 # Filter the dataframe to include only the countries of interest
 countries = world[world['NAME'].isin(countries_to_color)]
@@ -52,10 +53,10 @@ cities_india=['Indore','Bhopal','Srinagar','Pune','New Delhi','Bengaluru','Kolka
 'Jodhpur','Jaisalmer','Nagpur','Coimbatore','Puducherry','Munnar','Dehradun','Nagercoil','Ahmedabad','Mysuru','Mangaluru','Jammu','Gandhinagar']
 cities_europe=['Vienna','Budapest','Bonn','Cologne','Interlaken','Bern','Basel','Milan','Geneva','Berlin','Warsaw','Chamonix',\
 'Metzeral','Bolzano','Brussels','Krakow','Lisbon']
-cities_us=['Boulder', 'New York','Bend','Atlanta','Los Angeles','Minneapolis','Chicago','Medford',\
-'Myrtle Beach','Boston','Mt Shasta','Furnace Creek','Asheville','Huntington','Lexington','Great Barrington',\
-'Mt Airy','Phoenix','Flagstaff','New Orleans','Laramie','Bozeman','Madison']
-cities_misc=['Singapore','Denpasar','Yogyakarta','Malang','Jember','Monterrey']
+cities_us=['Boulder', 'New York','Bend','Atlanta','Los Angeles','Minneapolis','Chicago',\
+'Myrtle Beach','Boston','Mt Shasta','Furnace Creek','Asheville','Huntington','Lexington',\
+'Phoenix','Flagstaff','New Orleans','Laramie','Bozeman','Madison']
+cities_misc=['Singapore','Denpasar','Yogyakarta','Malang','Jember','Monterrey','Panama City']
 cities_to_plot = cities_oz+cities_india+cities_europe+cities_us+cities_misc
 # cities_filtered = cities[cities['name'].isin(cities_us)]
 cities_filtered = cities[cities.apply(lambda row: row['name'] in cities_to_plot and (
@@ -63,7 +64,7 @@ cities_filtered = cities[cities.apply(lambda row: row['name'] in cities_to_plot 
     (row['sov0name'] == 'India' and row['name'] in cities_india) or
     (row['sov0name'] in ['Austria', 'Hungary', 'Germany', 'Switzerland', 'Italy', 'Poland','Belgium','Portugal'] and row['name'] in cities_europe) or
     (row['sov0name'] == 'United States' and row['name'] in cities_us) or
-    (row['sov0name'] in ['Singapore', 'Indonesia','Mexico'] and row['name'] in cities_misc)
+    (row['sov0name'] in ['Singapore', 'Indonesia','Mexico','Panama'] and row['name'] in cities_misc)
 ), axis=1)]
 ########################################
 
@@ -116,7 +117,7 @@ plt.tight_layout()
 plt.show()
 
 sys.exit()
-plt.savefig('Countries_w_city.png', dpi=800,bbox_inches='tight', pad_inches=0.1)
+plt.savefig('Countries_w_city_aug12.png', dpi=800,bbox_inches='tight', pad_inches=0.1)
 plt.savefig('Countries_new_.png', dpi=800,bbox_inches='tight', pad_inches=0.1)
 
 # Create a new figure and axes
